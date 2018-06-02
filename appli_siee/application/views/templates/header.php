@@ -1,23 +1,3 @@
-<?php 
-  if ($connecte>-1)
-  {
-      $isconnecte=0;
-      if($admin)
-      {
-        $admin=0;
-      }
-      else
-      {
-        $admin=1;
-      }
-  }
-  else
-  {
-    $isconnecte=1;
-    $admin=1;
-  }
-  
-?>
 
 <!DOCTYPE html>
 <html>
@@ -56,7 +36,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="home">Accueil</a></li>
         <?php
-        if($isconnecte === 1){
+        if($connecte < 0){
           ?>
         <li><a href="interventions/">Interventions</a></li>
         <?php
@@ -66,7 +46,7 @@
         <li class="dropdown">
           
           <?php
-            if($admin === 0){
+            if($admin){
           ?>
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Interventions<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -89,6 +69,7 @@
           </ul>
         </li>
         <li><a href="clients">Clients</a></li>
+        <li><a href="rdv">RDV</a></li>
         <?php }
         else{
           ?>
@@ -100,7 +81,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <?php 
-        if($isconnecte === 1)
+        if($connecte < 0)
         {
           ?>
         <base href = "<?php echo base_url(); ?>">
@@ -115,17 +96,15 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profil<span class="caret"></span></a>
           <ul class="dropdown-menu">
           <?php
-            if($admin === 0){
+            if($admin){
           ?><base href = "<?php echo base_url(); ?>">
-            <li><a href="rdv">TOUS LES RDV</a></li>
             <li><a href=<?php echo "clients/profil/".$connecte ?>>Mon profil</a></li>
             <li><a href=<?php echo "clients/modif_profil/".$connecte ?>>Modifier mon profil</a></li>
-            <li><a href="#">Ajouter compte admin</a></li>
           <?php 
           }
           else{
             ?><base href = "<?php echo base_url(); ?>">
-            <li><a href="rdv">Mes RDV</a></li>
+            <li><a href=<?php echo "rdv/mine/".$connecte ?>>Mes RDV</a></li>
             <li><a href=<?php echo "clients/profil/".$connecte ?>>Mon profil</a></li>
             <li><a href=<?php echo "clients/modif_profil/".$connecte ?>>Modifier mon profil</a></li>
             <li><a href=<?php echo "clients/verif_delete/".$connecte ?>>Supprimer mon compte</a></li>
@@ -141,11 +120,6 @@
   </div>
 </nav>
   
-<!-- <div class="container">
-  <h3>Collapsible Navbar</h3>
-  <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-  <p>Only when the button is clicked, the navigation bar will be displayed.</p>
-</div> -->
 
 </body>
 </html>

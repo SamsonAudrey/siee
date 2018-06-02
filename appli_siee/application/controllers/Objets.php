@@ -10,7 +10,9 @@ class Objets extends CI_Controller {
 
         public function index()
         {
-                $data['objets'] = $this->objets_model->get_objets();
+                $data['objets'] = $this->objets_model->get_objets_affichage();
+                $data['syndics'] = $this->objets_model->get_syndics_affichage();
+                $data['particuliers'] = $this->objets_model->get_particuliers_affichage();
                 $data['title'] = 'Objets présents';
                 $data['connecte']=$this->verif_cookie();
                 $data['admin']=$this->is_admin();
@@ -20,7 +22,7 @@ class Objets extends CI_Controller {
                 
         }
 
-        public function view($idobjet = NULL)
+        /*public function view($idobjet = NULL)
         {
               
                 $data['objets_item'] = $this->objets_model->get_objets($idobjet);
@@ -37,7 +39,7 @@ class Objets extends CI_Controller {
                 $this->load->view('templates/header', $data);
                 $this->load->view('objets/view', $data);
                 
-        }
+        }*/
 
         public function create()
         {
@@ -73,6 +75,8 @@ class Objets extends CI_Controller {
 
         public function verif_delete($idobjet = NULL)
         {
+            
+            $this->load->library('form_validation');
             $data['objets_item'] = $this->objets_model->get_objets($idobjet);
 
                 if (empty($data['objets_item']))
@@ -105,5 +109,44 @@ class Objets extends CI_Controller {
 
                     $this->index();
                 }   
+        }
+
+        public function modif_objets($idobjet = NULL)
+        {
+            $data['objets_item'] = $this->objets_model->get_objets($idobjet);
+
+                if (empty($data['objets_item']))
+                {
+                        show_404();
+                }
+                else
+                {
+                    $this->load->helper('form');
+                    $this->load->library('form_validation');
+
+                    $data['title'] = 'Création d un objet';
+                    $data['connecte']=$this->verif_cookie();
+                    $data['admin']=$this->is_admin();
+
+
+                    $this->form_validation->set_rules('idtype', 'type', 'required',array(
+                        'required'      => 'Veuillez choisir un type'
+                    ));
+
+
+                    if ($this->form_validation->run() === FALSE)
+                    {
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('objets/modification',$data);
+                        
+
+                    }
+                    else
+                    {
+                        $this->objets_model->update_objets($idobjet);
+                        $this->index();
+
+                    }
+                    }   
         }
 }

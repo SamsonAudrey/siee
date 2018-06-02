@@ -20,7 +20,7 @@ class Services extends CI_Controller {
                 
         }
 
-        public function view($idservice = NULL)
+        /*public function view($idservice = NULL)
         {
               
                 $data['services_item'] = $this->services_model->get_services($idservice);
@@ -37,7 +37,7 @@ class Services extends CI_Controller {
                 $this->load->view('templates/header', $data);
                 $this->load->view('services/view', $data);
                 
-                }
+                }*/
 
         public function create()
         {
@@ -69,6 +69,8 @@ class Services extends CI_Controller {
 
          public function verif_delete($idservice = NULL)
         {
+           
+            $this->load->library('form_validation');
             $data['services_item'] = $this->services_model->get_services($idservice);
 
                 if (empty($data['services_item']))

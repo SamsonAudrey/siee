@@ -1,3 +1,4 @@
+<?php echo coucou ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 		<div class="card" style="width: 50rem;">
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">
-					<h2>Rdv</h2>
+					<h2>Rdv à annuler</h2>
 				</li>
 				<li class="list-group-item">
 					<?php 
@@ -45,16 +46,22 @@
 					<p><?php echo $rdv_item['appellationservice'].' pour '.$rdv_item['appellationobjet']; ?></p>
 				</li>
 				<li class="list-group-item">
-					<h4>Client :</h4>
-					<p><?php echo $rdv_item['nomclient']."  ".$rdv_item['prenomclient'] ?></p>
-				</li>
-				<li class="list-group-item">
 					<h4>Dates de disponibilité</h4>
 					<p><?php echo $rdv_item['datedispo1'].'  ou  '.$rdv_item['datedispo2'] ?></p>
 				</li>
 				<li class="list-group-item">
 					<h4>Commentaire du client</h4>
 					<p><?php echo $rdv_item['commentairerdv']?></p>
+				</li>
+				<li class="list-group-item">
+					<h2> Etes-vous sûr ? </h2>
+					<?php echo form_open('rdv/delete/'.$rdv_item['idrdv']);
+					echo form_submit('oui','OUI');
+					echo form_close();
+
+					echo form_open('rdv/mine/'.$clients_item['idclient']);
+					echo form_submit('non','NON');
+					echo form_close();?>
 				</li>
 			</ul>
 		</div>

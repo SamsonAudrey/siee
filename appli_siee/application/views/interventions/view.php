@@ -1,11 +1,30 @@
-<?php 
-echo '<h2>'.'Détail de l\'intervention'.'</h2>';
-echo 'Numéro d\'intervention '.$interventions_item['idintervention']."\n";
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Détail de l'intervention</title>
+</head>
+<body>
 
-echo 'Intervention : '.$interventions_item['appellationservice'].' pour '.$interventions_item['appellationobjet'];
+<div class='container' align="center">
+		<div class="card" style="width: 50rem;">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<h2>Détail</h2>
+				</li>
+				<li class="list-group-item">
+					<p><?php echo $interventions_item['appellationservice'].' pour '.$interventions_item['appellationobjet']; ?></p>
+				</li>
+				<li class="list-group-item">
+					<h4>Durée (heure) :</h4>
+					<p><?php echo $interventions_item['dureeintervention'] ?></p>
+				</li>
+				<li class="list-group-item">
+					<h4>Description :</h4>
+					<p><?php echo $interventions_item['descriptionintervention'] ?></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
 
-echo 'Durée :'.$interventions_item['dureeintervention'].' H'."\n";
-echo 'Description : '.$interventions_item['descriptionintervention']."\n";
- ?>
-
-  <a href="<?php echo site_url('interventions/verif_delete/'.$interventions_item['idintervention']); ?>">SUPPRIMER</a>

@@ -13,6 +13,8 @@ class Interventions extends CI_Controller {
         public function index()
         {
                 $data['interventions'] = $this->interventions_model->get_interventions();
+                $data['syndics'] = $this->interventions_model->get_syndics_affichage();
+                $data['particuliers'] = $this->interventions_model->get_particuliers_affichage();
                 $data['title'] = 'Les interventions présentes :';
                 $data['connecte']=$this->verif_cookie();
                 $data['admin']=$this->is_admin();
@@ -85,6 +87,7 @@ class Interventions extends CI_Controller {
 
         public function verif_delete($idintervention = NULL)
         {
+            $this->load->library('form_validation');
             $data['interventions_item'] = $this->interventions_model->get_interventions($idintervention);
 
                 if (empty($data['interventions_item']))
@@ -116,6 +119,53 @@ class Interventions extends CI_Controller {
 
                     $this->index();
                 }   
+        }
+
+        public function modif_interventions($idintervention = FALSE)
+        {
+            if($interventions = FALSE)
+            {
+                show_404();
+            }
+
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $data['connecte']=$this->verif_cookie();
+            $data['admin']=$this->is_admin();
+            $data['services']=$this->services_model->get_services();
+            $data['objets']=$this->objets_model->get_objets();
+            $data['interventions_item'] = $this->interventions_model->get_interventions($idintervention);
+
+
+            $this->form_validation->set_rules('idservice', 'service', 'required',array(
+                'required'      => 'Vous devez remplir le %s.',
+        ));
+            $this->form_validation->set_rules('idobjet', 'objet', 'required',array(
+                'required'      => 'Vous devez remplir l\' %s.',
+        ));
+            $this->form_validation->set_rules('dureeintervention', 'Duree', 'required',array(
+                'required'      => 'Vous devez remplir la %s.',
+        ));
+            $this->form_validation->set_rules('descriptionintervention', 'description', 'required',array(
+                'required'      => 'Vous devez remplir la %s.',
+        ));
+
+
+
+            if ($this->form_validation->run() === FALSE)
+            {
+                $this->load->view('templates/header', $data);
+                $this->load->view('interventions/modification', $data);
+                
+
+            }
+            else
+            {
+                $this->interventions_model->update_interventions($idintervention);
+                $this->index();
+                
+            }
+            
         }
 }
 ?>

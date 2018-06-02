@@ -8,126 +8,123 @@
 </head>
 <body>
 	
-	<div align="center">
-		<div class="form-group">
-			<h3>Inscription</h3><br>
+	<div class='container' align="center">
+		<div class="card" style="width: 50rem;">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<div class="form-group">
+						<h3>Inscription</h3><br>
 
-			<?php echo validation_errors(); ?>
-		</div>
-		<div class="form-group">
-			<?php echo form_open('clients/inscription'); ?>
-			<?php echo form_label('Nom :', 'nomclient'); ?>
-					 	
-			<?php 
-			$nomclient= array(
-	 		'name'=>'nomclient',
-	 
-			'id'=>'nomclient',
+						<?php echo validation_errors(); ?>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<?php echo form_open('clients/inscription'); ?>
+					<?php echo form_label('Nom :', 'nomclient'); ?>
+							 	
+					<?php 
+					$nomclient= array(
+			 		'name'=>'nomclient',
 			 
-			'placeholder'=>'Votre nom',
+					'id'=>'nomclient',
+					 
+					'placeholder'=>'Votre nom',
 
-			'class'		=>	 'form-control',
+					'class'		=>	 'form-control',
+					 
+					'value'=>set_value('nomclient')
+					);
+					echo form_input($nomclient); ?>
+				</li>	
+				<li class="list-group-item">
+					<?php echo form_label('Prénom :', 'prenomclient'); ?>
+					<?php 
+					$prenomclient= array(
 			 
-			'value'=>set_value('nomclient')
-			);
-			echo form_input($nomclient); ?>
-		</div>			
-		<div class="form-group">
-			<?php echo form_label('Prénom :', 'prenomclient'); ?>
-			<?php 
-			$prenomclient= array(
-	 
-			'name'=>'prenomclient',
-				 
-			'id'=>'prenomclient',
-				 
-			'placeholder'=>'Votre prénom',
+					'name'=>'prenomclient',
+						 
+					'id'=>'prenomclient',
+						 
+					'placeholder'=>'Votre prénom',
 
-			'class'		=>	 'form-control',
+					'class'		=>	 'form-control',
+						 
+					'value'=>set_value('prenomclient')
+					);
+					echo form_input($prenomclient); ?>
+				</li>
+				<li class="list-group-item">
+					<?php echo form_label('Téléphone :', 'telephoneclient'); ?>
+					<?php 
+					$telephoneclient= array(
 				 
-			'value'=>set_value('prenomclient')
-			);
-			echo form_input($prenomclient); ?>
-		</div>
-		<div class="form-group">
-		<?php echo form_label('Téléphone :', 'telephoneclient'); ?>
-		<?php 
-		$telephoneclient= array(
-	 
-		'name'=>'telephoneclient',
-				 
-		'id'=>'telephoneclient',
-				 
-		'placeholder'=>'0600000000',
+					'name'=>'telephoneclient',
+							 
+					'id'=>'telephoneclient',
+							 
+					'placeholder'=>'0600000000',
 
-		'class'		=>	 'form-control',
-				 
-		'value'=>set_value('telephoneclient')
-		);
-		echo form_input($telephoneclient); ?>
-		</div>
-		<div class="form-group">
-					
-			<?php echo form_label('Mail :', 'email'); ?>
-				<?php 
-				$email= array(
-	 
-				'name'=>'email',
-				 
-				'id'=>'email',
+					'class'		=>	 'form-control',
+							 
+					'value'=>set_value('telephoneclient')
+					);
+					echo form_input($telephoneclient); ?>
+				</li>
+				<li class="list-group-item">		
+					<?php echo form_label('Mail :', 'email'); 
+						$email= array(
+			 
+						'name'=>'email',
+						 
+						'id'=>'email',
 
-				'type'=>'email',
-				 
-				'placeholder'=>'exemple@gmail.com',
+						'type'=>'email',
+						 
+						'placeholder'=>'exemple@gmail.com',
 
-				'class'		=>	 'form-control',
-				 
-				'value'=>set_value('email')
-				);
-				echo form_input($email); ?>
-						
-		</div>
-		<div class="form-group">
-			<?php echo form_label('Confirmation mail :', 'email2'); ?>
-			<?php 
-			$email2= array(
-	 
-			'name'=>'email2',
-				 
-			'id'=>'email2',
+						'class'		=>	 'form-control',
+						 
+						'value'=>set_value('email')
+						);
+						echo form_input($email); ?>
+				</li>
+				<li class="list-group-item">
+					<?php echo form_label('Confirmation mail :', 'email2');  
+					$email2= array(
+			 
+					'name'=>'email2',
+						 
+					'id'=>'email2',
 
-			'type'=>'email',
-				 
-			'placeholder'=>'exemple@gmail.com',
+					'type'=>'email',
+						 
+					'placeholder'=>'exemple@gmail.com',
 
-			'class'		=>	 'form-control',
-				 
-			'value'=>set_value('email2')
-			);
-			echo form_input($email2); ?>
-						
-		</div>
-		<div class="form-group">
-			<?php echo form_label('Mot de passe :', 'mdp'); ?>
-			<?php 
-			$mdp= array(
-	 
-			'name'=>'mdp',
-				 
-			'id'=>'mdp',
+					'class'		=>	 'form-control',
+						 
+					'value'=>set_value('email2')
+					);
+					echo form_input($email2); ?>
+				</li>
+				<li class="list-group-item">
+					<?php echo form_label('Mot de passe :', 'mdp');  
+					$mdp= array(
+			 
+					'name'=>'mdp',
+						 
+					'id'=>'mdp',
 
-			'type'=>'password',
+					'type'=>'password',
 
-			'class'		=>	 'form-control',
-				 
-			'placeholder'=>'Votre mot de passe'
+					'class'		=>	 'form-control',
+						 
+					'placeholder'=>'Votre mot de passe'
 
-			);
-			echo form_input($mdp); ?>
-		</div>
-		<div class="form-group">
-			<?php echo form_label('Confirmation mdp :', 'mdp2'); ?>
-			<?php 
+					);
+					echo form_input($mdp); ?>
+				</li>
+				<li class="list-group-item">
+					<?php echo form_label('Confirmation mdp :', 'mdp2');  
 						$mdp2= array(
 	 
 						'name'=>'mdp2',
@@ -142,10 +139,9 @@
 
 						);
 						echo form_input($mdp2); ?>
-			</div>
-			<div class="form-group">
-				<?php echo form_label('Type de client :', 'idtype'); ?>
-				<?php  
+				</li>
+				<li class="list-group-item">
+				<?php echo form_label('Type de client :', 'idtype');  
 					$idtype= array(
  
 					'name'=>'idtype',
@@ -166,10 +162,9 @@
 					echo'</select>';
 
 					?>
-			</div>
-			<div class="form-group">
-				<?php echo form_label('Rue :', 'rueadresse'); ?>
-				<?php 
+				</li>
+				<li class="list-group-item">
+					<?php echo form_label('Rue :', 'rueadresse'); 
 						$rueadresse= array(
 	 
 						'name'=>'rueadresse',
@@ -183,10 +178,9 @@
 						'value'=>set_value('rueadresse')
 						);
 						echo form_input($rueadresse); ?>
-			</div>
-			<div class="form-group">
-				<?php echo form_label('Numéro :', 'nomeroadresse'); ?>
-				<?php 
+				</li>
+				<li class="list-group-item">
+				<?php echo form_label('Numéro :', 'nomeroadresse');
 						$numeroadresse= array(
 	 
 						'name'=>'numeroadresse',
@@ -200,10 +194,9 @@
 						'value'=>set_value('numeroadresse')
 						);
 						echo form_input($numeroadresse); ?>
-			</div>
-			<div class="form-group">
-				<?php echo form_label('Ville :', 'idville'); ?>
-				<?php  
+			</li>
+			<li class="list-group-item">
+				<?php echo form_label('Ville :', 'idville'); 
 					$idville= array(
  
 					'name'=>'idville',
@@ -213,7 +206,6 @@
 					'value'=>set_value('idville')
  
 					);
-
 
 					echo'<select name=\'idville\' class="form-control",>';
 					foreach ($villes as $ville):
@@ -227,11 +219,11 @@
  
 					echo'</select>';
 					?>
-			</div>
-			<div class="form-group">
-						<?php
+			</li>
+			<li class="list-group-item">
+					<?php
 				 
-			 		$submit = array(
+			 		/*$submit = array(
         			'name'          => 'submit',
         		
         			'id'            => 'button',
@@ -244,31 +236,14 @@
         		
         			'class'			=> 'login loginmodal-submit'
 				
-					);
-			 
-				  
+					);*/
 				 
 					echo form_submit('submit', 'Je m\'inscris'); ?>
-			</div>
-			 
-			<div class="form-group">
-    <?php
-	
-		$submit = array(
-        		'name'          => 'submit',
-        		
-        		'id'            => 'button',
-        		
-        		'value'         => 'Je me connecte',
-        		
-        		'type'          => 'submit',
-        		
-        		'class'			=> 'btn btn-lg btn-primary btn-block btn-signin'
-				
-				);
-				?>
-		<a href = "<?php echo site_url('pages/view'.'home');?>">RETOUR PAGE ACCUEIL</a><br> 
+			</li>
+			</ul>
+		</div>
 	</div>
+	
 	
 </body>
 </html>

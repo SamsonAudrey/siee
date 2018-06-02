@@ -192,24 +192,6 @@
 					echo form_submit('submit', 'Modifier'); ?>
 			</div>
 			 
-			<div class="form-group">
-    <?php
-	
-		$submit = array(
-        		'name'          => 'submit',
-        		
-        		'id'            => 'button',
-        		
-        		'value'         => 'retour',
-        		
-        		'type'          => 'submit',
-        		
-        		'class'			=> 'btn btn-lg btn-primary btn-block btn-signin'
-				
-				);
-				?>
-		<a href = "<?php echo site_url('pages/view'.'home');?>">RETOUR PAGE ACCUEIL</a><br> 
-	</div>
 	
 </body>
 </html>

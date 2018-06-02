@@ -13,20 +13,44 @@ class Rdv extends CI_Controller {
 
         public function index()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            $data['client']=$this->clients_model->get_clients($connecte);
+            if($connecte < 0 || !($data['admin']))
+            {
+                        
+                        show_404();
+            }
                 $data['rdv'] = $this->rdv_model->get_rdv();
+                $data['attentes'] = $this->rdv_model->get_rdv_attente();
+                $data['pasts'] = $this->rdv_model->get_rdv_past();
+                $data['futurs'] = $this->rdv_model->get_rdv_futur();
                 $data['title'] = 'Les rdv pris :';
-                $data['connecte']=$this->verif_cookie();
-                $data['admin']=$this->is_admin();
+                
 
                 $this->load->view('templates/header', $data);
                 $this->load->view('rdv/index', $data);
                 
         }
 
-        public function view($idintervention = NULL,$idclient = NULL)
+        public function view($idrdv = NULL)
         {
-              
-                $data['rdv_item'] = $this->rdv_model->get_rdv($idintervention,$idclient);
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            
+
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            $data['client']=$this->clients_model->get_clients($connecte);
+            if($connecte < 0 || !($data['admin']))
+            {
+                        
+                        show_404();
+            }
+             
+                $data['rdv_item'] = $this->rdv_model->get_rdv($idrdv);
 
                 if (empty($data['rdv_item']))
                 {
@@ -42,8 +66,37 @@ class Rdv extends CI_Controller {
                 
         }
 
+        public function mine($idclient = NULL)
+        {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            
+
+            $data['clients_item'] = $this->clients_model->get_clients($idclient);
+            if (empty($data['clients_item']))
+               {
+                        show_404();
+               }
+            
+            $connecte=$this->verif_cookie();
+            if($connecte!== $data['clients_item']['idclient'])
+            {
+                        show_404();
+            }
+            $data['title']="Prise de rdv";
+            $data['connecte']=$connecte;
+            $data['admin']=$this->is_admin();
+            
+            $data['rdvmine']=$this->rdv_model->get_rdv_of_client($idclient);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('rdv/mine', $data);
+                
+        }
+
         public function create($idclient = NULL )
         {
+
 
             $this->load->helper('form');
             $this->load->library('form_validation');
@@ -52,19 +105,16 @@ class Rdv extends CI_Controller {
             $data['clients_item'] = $this->clients_model->get_clients($idclient);
             if (empty($data['clients_item']))
                {
-                        
                         show_404();
                }
             
             $connecte=$this->verif_cookie();
             if($connecte!== $data['clients_item']['idclient'])
             {
-                        
                         show_404();
             }
-
-            $data['title'] = 'Prise de RDV';
-            $data['connecte']=$this->verif_cookie();
+            $data['title']="Prise de rdv";
+            $data['connecte']=$connecte;
             $data['admin']=$this->is_admin();
             $data['client']=$this->clients_model->get_clients($data['connecte']);
             $data['interventions']=$this->interventions_model->get_intervention_type_client($data['connecte']);
@@ -76,10 +126,8 @@ class Rdv extends CI_Controller {
                 'required'      => 'Vous devez choisir la %s.',
                 'callback_checkDateFormat'=> 'La %s n\'est pas valide ',
         ));
-            $this->form_validation->set_rules('datedispo2', 'deuxième disponibilité', 'required|!matches[datedispo1]',array(
+            $this->form_validation->set_rules('datedispo2', 'deuxième disponibilité', 'required',array(
                 'required'      => 'Vous devez choisir la %s.',
-                'callback_checkDateFormat'=> 'La %s n\'est pas valide ',
-                '!matches'  => 'Veuillez entrez deux dates différentes.'
         ));
             
             
@@ -99,8 +147,104 @@ class Rdv extends CI_Controller {
             else
             {
                 $this->rdv_model->set_rdv($idclient);
+                $this->load->view('templates/header', $data);
+                $this->load->view('pages/home',$data);
+            }
+        }
+
+        public function validation($idrdv = NULL)
+        {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+
+
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            $data['client']=$this->clients_model->get_clients($connecte);
+            if($connecte < 0 || !($data['admin']))
+            {
+                        
+                        show_404();
+            }
+            
+            $data['rdv_item']=$this->rdv_model->get_rdv($idrdv);
+            if(empty($data['rdv_item']))
+            {
+                show_404();
+            }
+            
+            $this->form_validation->set_rules('daterdv', 'deuxième disponibilité', 'required',array(
+                'required'      => 'Vous devez choisir la %s.',
+        ));
+            if ($this->form_validation->run() === FALSE)
+            {
+                $this->load->view('templates/header', $data);
+                $this->load->view('rdv/validation',$data);
+                
+
+            }
+            else
+            {
+                $this->rdv_model->update_rdv($idrdv);
                 $this->index();
             }
+
+        }
+
+        public function verif_delete($idrdv = NULL)
+        {
+            
+            $this->load->library('form_validation');
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            $data['clients_item']=$this->clients_model->get_clients($connecte);
+            if($connecte < 0 )
+            {
+                        show_404();
+            }
+            
+            $data['rdv_item']=$this->rdv_model->get_rdv($idrdv);
+            if(empty($data['rdv_item']))
+            {
+                show_404();
+            }
+
+            $data['title'] = "Supprésion rdv";
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('rdv/delete', $data);
+                
+        }
+
+        public function delete($idrdv = NULL)
+        {
+            
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            $data['clients_item']=$this->clients_model->get_clients($connecte);
+            if($connecte < 0 )
+            {
+                        show_404();
+            }
+            
+            $data['rdv_item']=$this->rdv_model->get_rdv($idrdv);
+            if(empty($data['rdv_item']))
+            {
+                show_404();
+            }
+            if (empty($data['rdv_item']))
+            {
+                    show_404();
+            }
+            else
+            {
+                $this->rdv_model->delete($idrdv);
+                $this->load->view('templates/header', $data);
+                $this->load->view('pages/home',$data);
+            }   
         }
 }
 ?>

@@ -18,11 +18,44 @@
                 return $query->result_array();
             }
 
-        $query = $this->db->get_where('clients',array('idclient' => $idclient));
+        $query = $this->db->get_where('clients', array('idclient' => $idclient));
         return $query->row_array();
-		
-
         }
+
+    public function get_clients_affichage(){
+        $this->db->select('idclient,nomclient,prenomclient,email,telephoneclient,rueadresse,numeroadresse,nomvile,types.nomtype');
+        $this->db->from('clients');
+        $this->db->join('types', 'types.idtype = clients.idtype');
+        $this->db->join('villes', 'villes.idville = clients.idville');
+        $this->db->where('isadmin',1);
+        $this->db->order_by('nomclient', 'ASC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_syndics_affichage(){
+        $this->db->select('idclient,nomclient,prenomclient,email,telephoneclient,rueadresse,numeroadresse,nomvile,types.nomtype');
+        $this->db->from('clients');
+        $this->db->join('types', 'types.idtype = clients.idtype');
+        $this->db->join('villes', 'villes.idville = clients.idville');
+        $this->db->where('isadmin',1);
+        $this->db->where('types.nomtype','syndic');
+        $this->db->order_by('nomclient', 'ASC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_particuliers_affichage(){
+        $this->db->select('idclient,nomclient,prenomclient,email,telephoneclient,rueadresse,numeroadresse,nomvile,types.nomtype');
+        $this->db->from('clients');
+        $this->db->join('types', 'types.idtype = clients.idtype');
+        $this->db->join('villes', 'villes.idville = clients.idville');
+        $this->db->where('isadmin',1);
+        $this->db->where('types.nomtype','particulier');
+        $this->db->order_by('nomclient', 'ASC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
         public function get_whit_mail_client($email = FALSE)
         {
@@ -115,13 +148,11 @@
                         return TRUE;
                 }
                 else{
-                    print("mauvais mot de passe");
                     return FALSE;
                 }
                 
             }
             else{
-                print('Le client n\'existe pas .');
                 return FALSE;
             }
         }

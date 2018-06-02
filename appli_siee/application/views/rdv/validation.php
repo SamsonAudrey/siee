@@ -10,32 +10,21 @@
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">
 					<h2>Rdv</h2>
+					<?php echo form_open('rdv/validation/'.$rdv_item['idrdv']);
+					echo validation_errors(); ?>
 				</li>
 				<li class="list-group-item">
-					<?php 
-					if($rdv_item['valide'] == 't')
-					{
-					?>
-					<h4>Rdv validé</h4>
 					<?php
-					}
-					else
-					{
-					?>
-					<h4>Rdv en attente</h4>
-					<?php
-					}
+					echo form_submit('submit', 'Valider le RDV ');
 					?>
 				</li>
-				<?php
-				if($rdv_item['valide'] == 't')
-				{
-				?>
+				
 				<li class="list-group-item">
 					<h4>Date du rdv</h4>
-					<p><?php echo $rdv_item['daterdv']?></p>
+					<?php echo form_label('Date','daterdv');?>
+	 				<input id="daterdv" type="date" name="daterdv" value="set_value('daterdv')" requireds>
+	 				<span class="validity"></span>
 				</li>
-				<?php } ?>
 				<li class="list-group-item">
 					<h4>Rdv demandé le </h4>
 					<p><?php echo $rdv_item['datedemande']?></p>

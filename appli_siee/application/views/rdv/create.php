@@ -40,30 +40,16 @@
 					'name'=>'idintervention',
 
 					'class'	=>'form-control',
+
+					'value'	=> set_value('idintervention'),
 		 
 					'id'=>'idintervention'
 		 
 					);
 
-					/*$this->db->select('idintervention,idservice,interventions.idobjet');
-					$this->db->from('interventions');
-					$this->db->join('objets', 'objets.idobjet = interventions.idobjet');
-					$this->db->where('objets.idtype',$client['idtype']);
-					$this->db->order_by('idservice', 'ASC');
-					$query = $this->db->get();*/
-
 					echo'<select name=\'idintervention\' class="form-control">';
 					foreach ($interventions as $interv)
 					{
-						/*if (isset($row)){
-						$this->db->select('appellationservice');
-						$this->db->where('idservice',$row->idservice);
-						$service = $this->db->get('services');
-						$this->db->select('appellationobjet');
-						$this->db->where('idobjet',$row->idobjet);
-						$objet = $this->db->get('objets');*/
-						/*	foreach ($service->result() as $serv) {
-								foreach ($objet->result() as $obj) {*/
 								?>
 									<option value="<?php echo $interv['idintervention']; ?>"><?php echo $interv['appellationservice']." ".$interv['appellationobjet']; ?></option>
 								<?php
@@ -78,7 +64,7 @@
 	 			<h3>Choisissez deux jours de disponibilité </h3>
 	 			<?php
 	 			echo form_label('Date','datedispo1');?>
-	 			<input id="datedispo1" type="date" name="datedispo1" requireds>
+	 			<input id="datedispo1" type="date" name="datedispo1" value="set_value('datedispo1')" requireds>
 	 			<span class="validity"></span>
 	 			
 	 			</li>

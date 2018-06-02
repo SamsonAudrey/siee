@@ -6,20 +6,31 @@ class Clients extends CI_Controller {
                 parent::__construct();
                 $this->load->model('clients_model');
                 $this->load->model('types_model');
+               // $this->load->model('pages');
                 $this->load->helper('url_helper');
-                //$this->load->helper('cookie');
+                $this->load->helper('cookie');
         }
 
         public function index()
         {
-                $data['clients'] = $this->clients_model->get_clients();
+
+                $data['clients'] = $this->clients_model->get_clients_affichage();
+                $data['syndics'] = $this->clients_model->get_syndics_affichage();
+                $data['particuliers'] = $this->clients_model->get_particuliers_affichage();
                 $data['title'] = 'Les clients présents';
                 $data['admin']=$this->is_admin();
                 $data['connecte']=$this->verif_cookie();
 
-                $this->load->view('templates/header', $data);
-                $this->load->view('clients/index', $data);
-                $this->load->view('templates/footer');
+                if($data['admin'])
+                {
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('clients/index', $data); 
+                }
+                else
+                {
+                    show_404();
+                }
+                
         }
 
         public function view($idclient = NULL)
@@ -70,7 +81,7 @@ class Clients extends CI_Controller {
                 'min_length'    => 'Votre %s doit faire 10 caractères.',
                 'numeric'       => 'Votre %s n\' est pas valide .'
             ));
-            $this->form_validation->set_rules('email', 'mail', 'trim|required|max_length[50]|valid_email|is_unique[objets.appellationobjet]',array(
+            $this->form_validation->set_rules('email', 'mail', 'trim|required|max_length[50]|valid_email|is_unique[clients.email]',array(
                 'required'      => 'Vous devez remplir votre %s.',
                 'is_unique'     => 'Cet %s existe déjà.',
                 'max_length'    => 'Votre %s ne doit pas dépasser 50 caractères.',
@@ -126,9 +137,10 @@ class Clients extends CI_Controller {
             $this->load->helper('form');
             $this->load->library('form_validation');
 
-             $data['title'] = 'Connexion';
+            $data['title'] = 'Connexion';
+            $data['erreur']="";
 
-             $this->form_validation->set_rules('emailconnect', 'mail', 'trim|required|max_length[50]|valid_email|is_unique[objets.appellationobjet]',array(
+             $this->form_validation->set_rules('emailconnect', 'mail', 'trim|required|max_length[50]|valid_email',array(
                 'required'      => 'Vous devez remplir votre %s.',
                 'is_unique'     => 'Cet %s existe déjà.',
                 'max_length'    => 'Votre %s ne doit pas dépasser 50 caractères.',
@@ -140,9 +152,9 @@ class Clients extends CI_Controller {
 
             if ($this->form_validation->run() === FALSE)
             {
-
+                
                 $this->load->view('templates/header', $data);
-                $this->load->view('clients/connexion');
+                $this->load->view('clients/connexion',$data);
                 
 
             }
@@ -152,20 +164,20 @@ class Clients extends CI_Controller {
                $res=$this->clients_model->connect_client();
                if(!$res)
                {
-                   
-                    $this->load->view('templates/header', $data);
-                    $this->load->view('clients/connexion');
+                   $data['erreur']="Erreur de connexion, le client n'existe pas ou le mot de passe n'est pas le bon.";
+                   $this->load->view('templates/header', $data);
+                   $this->load->view('clients/connexion',$data);
                    
                }
                else{
-                    //ajout d'un cookie pour le client qui vient de se conecter ! 
+                    //ajout d'un cookie pour le client qui vient de se connecter ! 
                     
                     $leclient['client']=$this->clients_model->get_whit_mail_client($this->input->post('emailconnect'));
                     $this->add_cookie($leclient['client']['idclient']);
                     $data['connecte']=$this->verif_cookie();
                     $data['admin']=$this->is_admin();
                     $this->load->view('templates/header', $data);
-                    $this->load->view('pages/home', $data);
+                    $this->load->view('pages/home',$data);
                }
                 
             }     
@@ -196,13 +208,7 @@ class Clients extends CI_Controller {
                         $this->load->view("clients/connexion");
             }
             $type=$this->clients_model->get_clients_type($data['clients_item']['idtype']);
-            /*$this->db->select('nomtype');
-            $this->db->where('idtype',$data['clients_item']['idtype']);
-            $type = $this->db->get('types');*/
             $ville=$this->clients_model->get_clients_ville($data['clients_item']['idville']);
-            /*$this->db->select('nomvile');
-            $this->db->where('idville',$data['clients_item']['idville']);
-            $ville = $this->db->get('villes');*/
             if(!empty($type))
             {
                 if (!empty($ville))

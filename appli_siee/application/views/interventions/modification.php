@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Création d'intervention</title>
-	<meta charset="utf-8">
+	<title>Modification d'intervention</title>
 </head>
 <body>
 
@@ -12,13 +11,13 @@
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">
 					<div class="form-group">
-						<h2>Création</h2>
+						<h2>Modification</h2>
 						<?php echo validation_errors(); ?>
 					</div>
 				</li>
 				<li class="list-group-item">
 					<?php 
-					 	echo form_open('interventions/create');
+					 	echo form_open('interventions/modif_interventions/'.$interventions_item['idintervention']);
 
 					 	echo form_label('Idservice : ', 'idservice');
 						$idservice= array(
@@ -27,7 +26,7 @@
 					 
 							'id'=>'idservice',
 
-							'value'=>set_value('idservice')
+							'value'=>$interventions_item['idservice']
 					 
 						);
 
@@ -54,7 +53,7 @@
 					 
 							'id'=>'idobjet',
 
-							'value'=>set_value('idobjet')
+							'value'=>$interventions_item['idobjet']
 					 
 						);
 
@@ -85,7 +84,7 @@
 
 							'size'=>20,
 					 
-							'value'=>set_value('dureeintervention')
+							'value'=>$interventions_item['dureeintervention']
 					 
 						);
 						echo form_input($dureeintervention);
@@ -103,14 +102,14 @@
 					 
 							'placeholder'=>'texte',
 					 
-							'value'=>set_value('descriptionintervention')
+							'value'=>$interventions_item['descriptionintervention']
 					 
 						);
 						echo form_textarea($descriptionintervention);
 					?>
 				</li>
 				<li class="list-group-item">
-					<?php echo form_submit('submit', 'Ajouter l\'intervention'); ?>
+					<?php echo form_submit('submit', 'Modifier l\'intervention'); ?>
 				</li>
 				<?php   echo form_close(); ?>
 			</ul>
@@ -118,5 +117,4 @@
 	</div>
 </body>
 </html>
-
 

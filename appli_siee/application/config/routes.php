@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['calendar'] = 'calendar';
 
+
 $route['rdv/create/(:any)'] = 'rdv/create/$1';
 $route['rdv/(:any)'] = 'rdv/view/$1';
 $route['rdv'] = 'rdv';
@@ -67,6 +68,7 @@ $route['clients/inscription'] = 'clients/inscription';
 $route['clients/(:any)'] = 'clients/view/$1';
 $route['clients'] = 'clients';
 
+$route['interventions/modif_interventions/(:any)'] = 'interventions/modif_interventions/$1';
 $route['interventions/create'] = 'interventions/create';
 $route['interventions/(:any)'] = 'interventions/view/$1';
 $route['interventions'] = 'interventions';
@@ -82,7 +84,6 @@ $route['types'] = 'types';
 $route['objets/verif_delete/(:any)'] = 'objets/verif_delete/$1';
 $route['objets/delete/(:any)'] = 'objets/delete/$1';
 $route['objets/create'] = 'objets/create';
-$route['objets/(:any)'] = 'objets/view/$1';
 $route['objets'] = 'objets';
 
 $route['news/create'] = 'news/create';

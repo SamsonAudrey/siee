@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Création objet </title>
+	<title>Modification objet </title>
 	<meta charset="utf-8">
 </head>
 <body>
@@ -12,29 +12,16 @@
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">
 					<div class="form-group">
-						<h2>Création</h2>
+						<h2>Modification</h2>
 						<?php echo validation_errors(); ?>
 					</div>
 				</li>
 				<li class="list-group-item">
 					<?php 
-					 echo form_open('objets/create');
-
-					echo form_label('Appellation : ', 'appellationobjet');
-					$appellationobjet= array(
+					echo form_open('objets/modif_objets/'.$objets_item['idobjet']);
+					echo $objets_item['appellationobjet'] ?>
+					 
 					
-					'name'=>'appellationobjet',
-					
-					'id'=>'appellationobjet',
-					 
-					'placeholder'=>'Interphone',
-					 
-					'value'=>set_value('appellationobjet')
-					 
-					);
-					echo form_input($appellationobjet);
-					echo form_error('appellationobjet');
-					?>
 				</li>
 				<li class="list-group-item">
 					<?php
@@ -47,7 +34,7 @@
 					?>
 				</li>
 				<li class="list-group-item">
-					<?php echo form_submit('submit', 'Ajouter l\'objet');
+					<?php echo form_submit('submit', 'Modifier l\'objet');
 					echo form_close(); ?>
 				</li>
 			</ul>
