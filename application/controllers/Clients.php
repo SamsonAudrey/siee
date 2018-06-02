@@ -74,7 +74,7 @@ class Clients extends CI_Controller {
             $data['title'] = 'Connexion';
             $data['erreur']="";
             $connecte=$this->verif_cookie();
-            if($connecte>-1)
+            if($connecte> -1)
             {
                     show_404();
             }
@@ -160,11 +160,7 @@ class Clients extends CI_Controller {
             $data['title'] = 'Connexion';
             $data['erreur']="";
             $connecte=$this->verif_cookie();
-            if($connecte>-1)
-            {
-                    show_404();
-            }
-
+            
              $this->form_validation->set_rules('emailconnect', 'mail', 'trim|required|max_length[50]|valid_email',array(
                 'required'      => 'Vous devez remplir votre %s.',
                 'is_unique'     => 'Cet %s existe déjà.',
@@ -181,11 +177,9 @@ class Clients extends CI_Controller {
                 $this->load->view('templates/header', $data);
                 $this->load->view('clients/connexion',$data);
                 
-
             }
             else
             {
-
                $res=$this->clients_model->connect_client();
                if(!$res)
                {
@@ -196,7 +190,6 @@ class Clients extends CI_Controller {
                }
                else{
                     //ajout d'un cookie pour le client qui vient de se connecter ! 
-                    
                     $leclient['client']=$this->clients_model->get_whit_mail_client($this->input->post('emailconnect'));
                     $this->add_cookie($leclient['client']['idclient']);
                     $data['connecte']=$this->verif_cookie();
@@ -409,17 +402,7 @@ class Clients extends CI_Controller {
                {
                         show_404();
                }
-            $connecte=$this->verif_cookie();
-            if($connecte!== $data['clients_item']['idclient'])
-            {
-                        show_404();
-            }
-            $data['clients_item'] = $this->clients_model->get_clients($idclient);
-            if (empty($data['clients_item']))
-               {
-                        show_404();
-               }
-
+            
             $cookie_val=password_hash($data['clients_item']['email'],PASSWORD_DEFAULT);
             setcookie('cookie_user',$cookie_val,time()+(10000),"/",''); 
         } 
