@@ -222,22 +222,7 @@
 			</li>
 			<li class="list-group-item">
 					<?php
-				 
-			 		/*$submit = array(
-        			'name'          => 'submit',
-        		
-        			'id'            => 'button',
-        		
-        			'value'         => 'Je m\'inscris',
-        		
-        			'type'          => 'submit',
-
-        			'class'			=>		'btn btn-primary btn-lg btn-block login-button',
-        		
-        			'class'			=> 'login loginmodal-submit'
-				
-					);*/
-				 
+				 				 
 					echo form_submit('submit', 'Je m\'inscris'); ?>
 			</li>
 			</ul>

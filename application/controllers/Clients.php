@@ -6,7 +6,6 @@ class Clients extends CI_Controller {
                 parent::__construct();
                 $this->load->model('clients_model');
                 $this->load->model('types_model');
-               // $this->load->model('pages');
                 $this->load->helper('url_helper');
                 $this->load->helper('cookie');
         }
@@ -77,7 +76,7 @@ class Clients extends CI_Controller {
             $connecte=$this->verif_cookie();
             if($connecte>-1)
             {
-                        $this->load->view("pages/home",$data);
+                    show_404();
             }
             $data['title'] = 'Inscription Fictive';
             $data['admin']=$this->is_admin();
@@ -154,6 +153,7 @@ class Clients extends CI_Controller {
         {   
             $data['connecte']=$this->verif_cookie();
             $data['admin']=$this->is_admin();
+
             $this->load->helper('form');
             $this->load->library('form_validation');
 
@@ -162,7 +162,7 @@ class Clients extends CI_Controller {
             $connecte=$this->verif_cookie();
             if($connecte>-1)
             {
-                        $this->load->view("pages/home",$data);
+                    show_404();
             }
 
              $this->form_validation->set_rules('emailconnect', 'mail', 'trim|required|max_length[50]|valid_email',array(
@@ -233,7 +233,7 @@ class Clients extends CI_Controller {
             $data['client']=$this->clients_model->get_clients($connecte);
             if($connecte < 0 )
             {
-                     $this->load->view("clients/connexion");
+                    show_404();
                         
             }
             $data['clients_item'] = $this->clients_model->get_clients($idclient);
@@ -246,8 +246,7 @@ class Clients extends CI_Controller {
             $connecte=$this->verif_cookie();
             if($connecte!== $data['clients_item']['idclient'])
             {
-                        $this->load->view('templates/header', $data);
-                        $this->load->view('pages/home',$data);
+                        show_404();
             }
             $type=$this->clients_model->get_clients_type($data['clients_item']['idtype']);
             $ville=$this->clients_model->get_clients_ville($data['clients_item']['idville']);
@@ -367,7 +366,7 @@ class Clients extends CI_Controller {
             $connecte=$this->verif_cookie();
             if($connecte!== $data['clients_item']['idclient'])
             {
-                 $this->load->view("clients/connexion");
+                 show_404();
             }
 
                 $data['connecte']=$this->verif_cookie();
@@ -413,8 +412,7 @@ class Clients extends CI_Controller {
             $connecte=$this->verif_cookie();
             if($connecte!== $data['clients_item']['idclient'])
             {
-                        $this->load->view('templates/header', $data);
-                        $this->load->view('pages/home',$data);
+                        show_404();
             }
             $data['clients_item'] = $this->clients_model->get_clients($idclient);
             if (empty($data['clients_item']))
@@ -433,10 +431,9 @@ class Clients extends CI_Controller {
         public function delete_cookie() { 
 
             $connecte=$this->verif_cookie();
-            if($connecte > 0)
+            if($connecte < 0)
             {
-                        $this->load->view('templates/header', $data);
-                        $this->load->view('pages/home',$data);
+                        show_404();
             }
              setcookie('cookie_user','',time()-(10000),"/",'');
         }
