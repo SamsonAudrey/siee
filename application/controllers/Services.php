@@ -10,6 +10,13 @@ class Services extends CI_Controller {
 
         public function index()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
                 $data['services'] = $this->services_model->get_services();
                 $data['title'] = 'Les différents services :';
                 $data['connecte']=$this->verif_cookie();
@@ -20,27 +27,15 @@ class Services extends CI_Controller {
                 
         }
 
-        /*public function view($idservice = NULL)
-        {
-              
-                $data['services_item'] = $this->services_model->get_services($idservice);
-
-                if (empty($data['services_item']))
-                {
-                        show_404();
-                }
-
-                $data['title'] = $data['services_item']['appellationservice'];
-                $data['connecte']=$this->verif_cookie();
-                $data['admin']=$this->is_admin();
-
-                $this->load->view('templates/header', $data);
-                $this->load->view('services/view', $data);
-                
-                }*/
-
         public function create()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $this->load->helper('form');
             $this->load->library('form_validation');
 
@@ -69,6 +64,13 @@ class Services extends CI_Controller {
 
          public function verif_delete($idservice = NULL)
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
            
             $this->load->library('form_validation');
             $data['services_item'] = $this->services_model->get_services($idservice);
@@ -90,6 +92,13 @@ class Services extends CI_Controller {
 
         public function delete($idservice = NULL)
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $data['services_item'] = $this->services_model->get_services($idservice);
 
                 if (empty($data['services_item']))

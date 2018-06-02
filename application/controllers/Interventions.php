@@ -12,14 +12,20 @@ class Interventions extends CI_Controller {
 
         public function index()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            $data['client']=$this->clients_model->get_clients($connecte);
+            if($connecte < 0)
+            {
+                        
+                        show_404();
+            }
                 $data['interventions'] = $this->interventions_model->get_interventions();
                 $data['syndics'] = $this->interventions_model->get_syndics_affichage();
                 $data['particuliers'] = $this->interventions_model->get_particuliers_affichage();
                 $data['title'] = 'Les interventions présentes :';
-                $data['connecte']=$this->verif_cookie();
-                $data['admin']=$this->is_admin();
-
-                
+                                
                 $this->load->view('templates/header', $data);
                 $this->load->view('interventions/index', $data);
                 
@@ -27,7 +33,14 @@ class Interventions extends CI_Controller {
 
         public function view($idintervention = NULL)
         {
-              
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            $data['client']=$this->clients_model->get_clients($connecte);
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
                 $data['interventions_item'] = $this->interventions_model->get_interventions($idintervention);
 
                 if (empty($data['interventions_item']))
@@ -36,8 +49,6 @@ class Interventions extends CI_Controller {
                 }
 
                 $data['title'] = $data['interventions_item']['idintervention'];
-                $data['connecte']=$this->verif_cookie();
-                $data['admin']=$this->is_admin();
                 
                 $this->load->view('templates/header', $data);
                 $this->load->view('interventions/view', $data);
@@ -46,6 +57,14 @@ class Interventions extends CI_Controller {
 
         public function create()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            $data['client']=$this->clients_model->get_clients($connecte);
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $this->load->helper('form');
             $this->load->library('form_validation');
             $data['connecte']=$this->verif_cookie();
@@ -87,6 +106,13 @@ class Interventions extends CI_Controller {
 
         public function verif_delete($idintervention = NULL)
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $this->load->library('form_validation');
             $data['interventions_item'] = $this->interventions_model->get_interventions($idintervention);
 
@@ -107,7 +133,14 @@ class Interventions extends CI_Controller {
 
         public function delete($idintervention = NULL)
         {
-             $data['interventions_item'] = $this->interventions_model->get_interventions($idintervention);
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
+            $data['interventions_item'] = $this->interventions_model->get_interventions($idintervention);
 
                 if (empty($data['interventions_item']))
                 {
@@ -127,7 +160,14 @@ class Interventions extends CI_Controller {
             {
                 show_404();
             }
-
+            
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $this->load->helper('form');
             $this->load->library('form_validation');
             $data['connecte']=$this->verif_cookie();

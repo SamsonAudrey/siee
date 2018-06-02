@@ -10,6 +10,13 @@ class Objets extends CI_Controller {
 
         public function index()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
                 $data['objets'] = $this->objets_model->get_objets_affichage();
                 $data['syndics'] = $this->objets_model->get_syndics_affichage();
                 $data['particuliers'] = $this->objets_model->get_particuliers_affichage();
@@ -22,33 +29,20 @@ class Objets extends CI_Controller {
                 
         }
 
-        /*public function view($idobjet = NULL)
-        {
-              
-                $data['objets_item'] = $this->objets_model->get_objets($idobjet);
-
-                if (empty($data['objets_item']))
-                {
-                        show_404();
-                }
-
-                $data['title'] = $data['objets_item']['appellationobjet'];
-                $data['connecte']=$this->verif_cookie();
-                $data['admin']=$this->is_admin();
-
-                $this->load->view('templates/header', $data);
-                $this->load->view('objets/view', $data);
-                
-        }*/
 
         public function create()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $this->load->helper('form');
             $this->load->library('form_validation');
 
             $data['title'] = 'Création d un objet';
-            $data['connecte']=$this->verif_cookie();
-            $data['admin']=$this->is_admin();
 
             $this->form_validation->set_rules('appellationobjet', 'Appellation', 'required|is_unique[objets.appellationobjet]',array(
                 'required'      => 'Vous devez remplir l\' %s.',
@@ -75,7 +69,13 @@ class Objets extends CI_Controller {
 
         public function verif_delete($idobjet = NULL)
         {
-            
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $this->load->library('form_validation');
             $data['objets_item'] = $this->objets_model->get_objets($idobjet);
 
@@ -87,8 +87,6 @@ class Objets extends CI_Controller {
 
                 $data['title'] = $data['objets_item']['appellationobjet'];
 
-                $data['connecte']=$this->verif_cookie();
-                $data['admin']=$this->is_admin();
 
                 $this->load->view('templates/header', $data);
                 $this->load->view('objets/delete', $data);
@@ -97,6 +95,13 @@ class Objets extends CI_Controller {
 
         public function delete($idobjet = NULL)
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $data['objets_item'] = $this->objets_model->get_objets($idobjet);
 
                 if (empty($data['objets_item']))
@@ -113,6 +118,13 @@ class Objets extends CI_Controller {
 
         public function modif_objets($idobjet = NULL)
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $data['objets_item'] = $this->objets_model->get_objets($idobjet);
 
                 if (empty($data['objets_item']))

@@ -200,17 +200,18 @@ class Rdv extends CI_Controller {
             $connecte=$this->verif_cookie();
             $data['connecte'] = $connecte;
             $data['clients_item']=$this->clients_model->get_clients($connecte);
-            if($connecte < 0 )
-            {
-                        show_404();
-            }
-            
             $data['rdv_item']=$this->rdv_model->get_rdv($idrdv);
             if(empty($data['rdv_item']))
             {
                 show_404();
             }
-
+            if($connecte < 0 || $data['rdv_item']['idclient']!==$connecte)
+            {
+                        show_404();
+            }
+            
+            
+            
             $data['title'] = "Supprésion rdv";
 
             $this->load->view('templates/header', $data);
@@ -225,16 +226,18 @@ class Rdv extends CI_Controller {
             $connecte=$this->verif_cookie();
             $data['connecte'] = $connecte;
             $data['clients_item']=$this->clients_model->get_clients($connecte);
-            if($connecte < 0 )
-            {
-                        show_404();
-            }
-            
             $data['rdv_item']=$this->rdv_model->get_rdv($idrdv);
             if(empty($data['rdv_item']))
             {
                 show_404();
             }
+            if($connecte < 0 || $data['rdv_item']['idclient']!==$connecte)
+            {
+                        show_404();
+            }
+            
+            
+            
             if (empty($data['rdv_item']))
             {
                     show_404();

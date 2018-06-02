@@ -17,7 +17,7 @@
         
         if ($idrdv === FALSE)
             {
-                $this->db->select('idrdv,datedemande,datedispo1,datedispo2,daterdv,commentairerdv,valide,appellationservice,appellationobjet,nomclient,prenomclient');
+                $this->db->select('idrdv,rdv.idclient,datedemande,datedispo1,datedispo2,daterdv,commentairerdv,valide,appellationservice,appellationobjet,nomclient,prenomclient');
                 $this->db->from('rdv');
                 $this->db->join('interventions','interventions.idintervention = rdv.idintervention');
                 $this->db->join('services','services.idservice = interventions.idservice');

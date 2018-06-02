@@ -10,6 +10,13 @@ class Types extends CI_Controller {
 
         public function index()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
                 $data['types'] = $this->types_model->get_types();
                 $data['title'] = 'Les différents types';
                 $data['connecte']=$this->verif_cookie();
@@ -22,7 +29,13 @@ class Types extends CI_Controller {
 
         public function view($idtype = NULL)
         {
-              
+              $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
                 $data['types_item'] = $this->types_model->get_types($idtype);
 
                 if (empty($data['types_item']))
@@ -41,6 +54,13 @@ class Types extends CI_Controller {
 
         public function create()
         {
+            $data['admin']=$this->is_admin();
+            $connecte=$this->verif_cookie();
+            $data['connecte'] = $connecte;
+            if($connecte < 0 || !($data['admin']))
+            {
+                        show_404();
+            }
             $this->load->helper('form');
             $this->load->library('form_validation');
 
