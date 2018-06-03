@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div id="list-example" class="list-group">
+<div id="list-example" class="list-group" id="homepage">
   <a class="list-group-item list-group-item-action" href="#list-item-1">Electricité générale</a>
   <a class="list-group-item list-group-item-action" href="#list-item-2">Contrôle d'accès et vigik</a>
   <a class="list-group-item list-group-item-action" href="#list-item-3">Antennes collectives</a>
@@ -24,7 +24,7 @@
   <a class="list-group-item list-group-item-action" href="#list-item-5">Automatisme et petites serrureries</a>
   <a class="list-group-item list-group-item-action" href="#list-item-6">Sécurité/Sinistre</a>
 </div>
-<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" id="homepage">
+<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
   <h4 id="list-item-1">Electricité générale</h4>
   <p>L'entreprise propose des services d'électricité sur courant faible et courant fort.
   <ul>
@@ -32,7 +32,7 @@
   	<li>Eclairage</li>
   	<li>VMC</li>
   	<li>TV</li>
-  	<li>Detecteur de mouvements</li>
+  	<li>Détecteur de mouvements</li>
   	<li>...</li>
   </ul> </p>
   <h4 id="list-item-2">Contrôle d'accès et vigik</h4>
