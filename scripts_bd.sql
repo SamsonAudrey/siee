@@ -1,5 +1,5 @@
 /*Je n'ai pas réussi à sauvegarder ma base de données à cause de problème de version. J'ai donc regroupé ici les scripts que je possède pour celle ci.
-Il manque le trigger qui vérifie que la date du rendez vous est futur et non pas passé. */
+*/
 
 
 -- Table: public.villes
@@ -225,3 +225,15 @@ END IF;
 RETURN NEW;
 END; 
 $trigger_serv$
+
+CREATE FUNCTION verif_rdv() RETURNS TRIGGER AS $trigger_rdv$
+DECLARE
+ddate date;
+BEGIN
+select CURRENT_DATE into ddate;
+IF new.datedispo1 < ddate OR new.datedispo2 < ddate THEN
+  RAISE EXCEPTION 'Vos dates sont deja passees';
+END IF;
+RETURN NEW;
+END; 
+$trigger_rdv$
