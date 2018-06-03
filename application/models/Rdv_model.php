@@ -131,6 +131,7 @@
             );
 
             return $this->db->insert('rdv', $rdv);
+            
         }
 
         public function update_rdv($idrdv){

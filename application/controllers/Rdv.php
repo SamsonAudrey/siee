@@ -122,15 +122,16 @@ class Rdv extends CI_Controller {
             $this->form_validation->set_rules('idintervention', 'intervention', 'required',array(
                 'required'      => 'Vous devez remplir l\' %s.'
         ));
-            $this->form_validation->set_rules('datedispo1', 'première disponibilité', 'required|callback_validate_date|callback_notWk',array(
+            $this->form_validation->set_rules('datedispo1', 'première disponibilité', 'required|callback_notWk|callback_validate_date',array(
                 'required'      => 'Vous devez choisir la %s.',
-                'validate_date'=> 'La %s n\'est pas valide ',
-                'notWk'        => 'Nous ne travaillons pas le weekend...'
+                'notWk'        => 'Nous ne travaillons pas le weekend...',
+                'validate_date' =>  'La %s n\'est pas valide'
         ));
-            $this->form_validation->set_rules('datedispo2', 'deuxième disponibilité', 'required|callback_validate_date|callback_notMatch[datedispo1]|callback_notWk',array(
+            $this->form_validation->set_rules('datedispo2', 'deuxième disponibilité', 'required|callback_notWk|callback__notMatch[datedispo1]|callback_validate_date',array(
                 'required'      => 'Vous devez choisir la %s.',
-                'validate_date'=> 'La %s n\'est pas valide ',
-                'notWk'        => 'Nous ne travaillons pas le weekend...'
+                'notWk'        => 'Nous ne travaillons pas le weekend...',
+                '_notMatch'      => 'Les deux dates ne doivent pas être identiques.',
+                'validate_date' =>  'La %s n\'est pas valide'
         ));
             
             
@@ -158,42 +159,38 @@ class Rdv extends CI_Controller {
 
         public function notWk($test_date)
         {
-            $numCurrentDay = $test_date -> format('N');
-            if (($numCurrentDay == '6') ||
-            ($numCurrentDay == '7'))
+            $dt=$test_date;
+            $dt1 = strtotime($dt);
+            $dt2 = date("l", $dt1);
+            $dt3 = strtolower($dt2);
+            if(($dt3 == "saturday" )|| ($dt3 == "sunday"))
             {
                 return FALSE;
-            }
+            } 
             else
             {
                 return TRUE;
             }
         }
 
-        public function notMatch($date1, $date2)
-        {
-            if($date2 != $this->input->post($dat1))
+            public function _notMatch($date2,$datedispo1)
             {
-                $this->form_validation->set_message('notMatch', 'Les deux dates doivent être différentes !');
-                return false;
-            }
-            return true;
+                
+                if($date2 == $this->input->post($datedispo1))
+                {
+                    $this->form_validation->set_message('notMatch', 'Les deux dates doivent être différentes !');
+                    return FALSE;
+                }
+                return TRUE;
         }
 
         public function validate_date($test_date)
         {
-            //VALIDATION of dates
-            $test_arr  = explode('/', $test_date);
-            if (count($test_arr) == 3) {
-                //dd/mm/yyyy
-            if (checkdate($test_arr[1], $test_arr[0], $test_arr[2])) {
+            $date=$test_date;
+
+            if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) {
                 return TRUE;
             } else {
-                $this->form_validation->set_message('validate_date', 'La date que vous avez choisie n\'est pas valide');
-                return FALSE;
-            }
-            } else {
-                $this->form_validation->set_message('validate_date', 'La date que vous avez choisie n\'est pas valide');
                 return FALSE;
             }
         }
