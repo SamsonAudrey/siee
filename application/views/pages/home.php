@@ -26,7 +26,7 @@
 </div>
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" >
   <h4 id="list-item-1" class="titrehome">Electricité générale</h4>
-  <p>L'entreprise propose des services d'électricité sur courant faible et courant fort.
+  <p class="listehome">L'entreprise propose des services d'électricité sur courant faible et courant fort.
   <ul class="listehome">
   	<li>Minuterie</li>
   	<li>Eclairage</li>
@@ -36,7 +36,7 @@
   	<li>...</li>
   </ul> </p>
   <h4 id="list-item-2" class="titrehome">Contrôle d'accès et vigik</h4>
-  <p><ul class="" ="listehome">
+  <p><ul class="listehome">
   	<li>Interphone</li>
   	<li>Clavier à code</li>
   	<li>Lecteur badge</li>
