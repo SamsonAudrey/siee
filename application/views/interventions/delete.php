@@ -57,7 +57,7 @@
 					{
 						?>
 						<h2>Cette intervention ne peut pas être supprimée</h2>
-						<p>Elle fait partie d'un rdv futur. Effectué dabord ce rdv pour pouvoir supprimer cette intervention.</p>
+						<p>Elle fait partie d'un rdv futur. Effectuez dabord ce rdv pour pouvoir supprimer cette intervention.</p>
 						<?php
 					}?>
 			</ul>
