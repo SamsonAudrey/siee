@@ -95,7 +95,12 @@ p.erreur{
 	color:#FFA500;
 }
 
-#listehome{
+ul.listehome{
 	list-style-type: none;
 	color:#000080;
+}
+
+h4.titrehome{
+	color:#FFA500;
+	text-decoration-line: underline;
 }
