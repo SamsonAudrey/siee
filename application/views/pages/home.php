@@ -9,22 +9,22 @@
 <body>
 	
 <div class="container" align="center">
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" >
   <div class="container">
     <h1 class="display-4">ENTREPRISE SIEE </h1>
     <p class="lead">Société d'installation d'équipements électriques</p>
   </div>
 </div>
 
-<div id="list-example" class="list-group" id="homepage">
-  <a class="list-group-item list-group-item-action" href="#list-item-1">Electricité générale</a>
-  <a class="list-group-item list-group-item-action" href="#list-item-2">Contrôle d'accès et vigik</a>
-  <a class="list-group-item list-group-item-action" href="#list-item-3">Antennes collectives</a>
-  <a class="list-group-item list-group-item-action" href="#list-item-4">Hall immeuble</a>
-  <a class="list-group-item list-group-item-action" href="#list-item-5">Automatisme et petites serrureries</a>
-  <a class="list-group-item list-group-item-action" href="#list-item-6">Sécurité/Sinistre</a>
+<div id="list-example" class="list-group">
+  <a class="list-group-item list-group-item-action" href="#list-item-1" id="homepage">Electricité générale</a>
+  <a class="list-group-item list-group-item-action" href="#list-item-2" id="homepage">Contrôle d'accès et vigik</a>
+  <a class="list-group-item list-group-item-action" href="#list-item-3" id="homepage">Antennes collectives</a>
+  <a class="list-group-item list-group-item-action" href="#list-item-4" id="homepage">Hall immeuble</a>
+  <a class="list-group-item list-group-item-action" href="#list-item-5" id="homepage">Automatisme et petites serrureries</a>
+  <a class="list-group-item list-group-item-action" href="#list-item-6" id="homepage">Sécurité/Sinistre</a>
 </div>
-<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" id="homepage">
   <h4 id="list-item-1">Electricité générale</h4>
   <p>L'entreprise propose des services d'électricité sur courant faible et courant fort.
   <ul>
