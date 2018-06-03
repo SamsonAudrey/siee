@@ -164,6 +164,22 @@
 					?>
 				</li>
 				<li class="list-group-item">
+					<?php echo form_label('Numéro :', 'nomeroadresse');
+						$numeroadresse= array(
+	 
+						'name'=>'numeroadresse',
+				 
+						'id'=>'numeroadresse',
+				 
+						'placeholder'=>'1',
+
+						'class'		=>	 'form-control',
+				 
+						'value'=>set_value('numeroadresse')
+						);
+						echo form_input($numeroadresse); ?>
+				</li>
+				<li class="list-group-item">
 					<?php echo form_label('Rue :', 'rueadresse'); 
 						$rueadresse= array(
 	 
@@ -179,22 +195,7 @@
 						);
 						echo form_input($rueadresse); ?>
 				</li>
-				<li class="list-group-item">
-				<?php echo form_label('Numéro :', 'nomeroadresse');
-						$numeroadresse= array(
-	 
-						'name'=>'numeroadresse',
-				 
-						'id'=>'numeroadresse',
-				 
-						'placeholder'=>'1',
-
-						'class'		=>	 'form-control',
-				 
-						'value'=>set_value('numeroadresse')
-						);
-						echo form_input($numeroadresse); ?>
-			</li>
+				
 			<li class="list-group-item">
 				<?php echo form_label('Ville :', 'idville'); 
 					$idville= array(

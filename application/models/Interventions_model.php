@@ -14,7 +14,7 @@ class Interventions_model extends CI_Model {
                 $this->db->from('interventions');
                 $this->db->join('services', 'services.idservice = interventions.idservice');
                 $this->db->join('objets', 'objets.idobjet = interventions.idobjet');
-                $this->db->order_by('appellationservice', 'ASC');
+                $this->db->order_by('appellationobjet', 'ASC');
                 $query = $this->db->get();
                 return $query->result_array();
         	}

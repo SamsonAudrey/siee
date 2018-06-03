@@ -93,10 +93,6 @@ $route['news'] = 'news';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 
-/*$route['cookies/display'] = 'cookies/display_cookie'; 
-$route['cookies/delete'] = 'cookies/delete_cookie';
-$route['cookies/(:any)'] = 'cookies/view/$1';
-$route['cookies'] = 'cookies'; */
 
 /*$route['default_controller'] = 'welcome';
 $route['404_override'] = '';

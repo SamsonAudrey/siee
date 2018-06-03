@@ -46,7 +46,7 @@ class Clients extends CI_Controller {
             $data['admin']=$this->is_admin();
             $connecte=$this->verif_cookie();
             $data['connecte'] = $connecte;
-            $data['clients_item']=$this->clients_model->get_clients($connecte);
+            $data['clients_item']=$this->clients_model->get_clients_affichage($connecte);
             if (empty($data['clients_item']))
                 {
                         show_404();

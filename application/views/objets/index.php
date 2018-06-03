@@ -88,6 +88,7 @@
 				      <th scope="col">#</th>
 				      <th scope="col">Type</th>
 				      <th scope="col">Appellation</th>
+				      <th scope="col">Modifier</th>
 				      <th scope="col">Supprimer</th>
 				    </tr>
 				  </thead>
@@ -124,6 +125,7 @@
 				      <th scope="col">#</th>
 				      <th scope="col">Type</th>
 				      <th scope="col">Appellation</th>
+				      <th scope="col">Modifier</th>
 				      <th scope="col">Supprimer</th>
 				    </tr>
 				  </thead>

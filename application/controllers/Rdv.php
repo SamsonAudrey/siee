@@ -120,21 +120,23 @@ class Rdv extends CI_Controller {
             $data['interventions']=$this->interventions_model->get_intervention_type_client($data['connecte']);
 
             $this->form_validation->set_rules('idintervention', 'intervention', 'required',array(
-                'required'      => 'Vous devez remplir l\' %s.',
+                'required'      => 'Vous devez remplir l\' %s.'
         ));
-            $this->form_validation->set_rules('datedispo1', 'première disponibilité', 'required',array(
+            $this->form_validation->set_rules('datedispo1', 'première disponibilité', 'required|validate_date(datedispo1)',array(
                 'required'      => 'Vous devez choisir la %s.',
-                'callback_checkDateFormat'=> 'La %s n\'est pas valide ',
+                'validate_date'=> 'La %s n\'est pas valide '
         ));
-            $this->form_validation->set_rules('datedispo2', 'deuxième disponibilité', 'required',array(
+            $this->form_validation->set_rules('datedispo2', 'deuxième disponibilité', 'required|validate_date(datedispo2)',array(
                 'required'      => 'Vous devez choisir la %s.',
+                'validate_date'=> 'La %s n\'est pas valide '
         ));
             
             
             $this->form_validation->set_rules('commentairerdv', 'commentaire', 'required',array(
-                'required'      => 'Vous devez remplire le champ %s.',
+                'required'      => 'Vous devez remplire le champ %s.'
         ));
              
+            
 
 
             if ($this->form_validation->run() === FALSE)
@@ -149,6 +151,21 @@ class Rdv extends CI_Controller {
                 $this->rdv_model->set_rdv($idclient);
                 $this->load->view('templates/header', $data);
                 $this->load->view('pages/home',$data);
+            }
+        }
+
+        public function validate_date($test_date)
+        {
+            //VALIDATION of dates
+            $test_arr  = explode('-', $test_date);
+            if (count($test_arr) == 3) {
+            if (checkdate($test_arr[1], $test_arr[0], $test_arr[0])) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+            } else {
+                return FALSE;
             }
         }
 

@@ -1,24 +1,3 @@
-<?php 
-  if ($connecte>-1)
-  {
-      $isconnecte=0;
-      if($admin)
-      {
-        $admin=0;
-      }
-      else
-      {
-        $admin=1;
-      }
-  }
-  else
-  {
-    $isconnecte=1;
-    $admin=1;
-  }
-  
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +5,7 @@
 </head>
 <body>
 	<?php
-	if($isconnecte === 0){
+	if($connecte >-1){
 		?>
 <div class='container' align="center">
 		<div class="card" style="width: 50rem;">
@@ -46,7 +25,7 @@
 				<li class="list-group-item">
 					<h3>Adresse:</h3>
 					<p><br/>
-					<?php echo $clients_item['rueadresse']." ".$clients_item['numeroadresse'];?>
+					<?php echo $clients_item['numeroadresse']." ".$clients_item['rueadresse'];?>
 					<br/>
 					<?php echo $villeclient; ?></p>
 				</li>
