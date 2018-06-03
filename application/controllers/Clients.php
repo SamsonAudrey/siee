@@ -57,7 +57,7 @@ class Clients extends CI_Controller {
 
             $this->load->view('templates/header', $data);
             $this->load->view('clients/view', $data);
-            $this->load->view('templates/footer');
+            
         }
 
         public function inscription()
@@ -130,7 +130,7 @@ class Clients extends CI_Controller {
                 $data['connecte']=$this->verif_cookie();
                 $this->load->view('templates/header', $data);
                 $this->load->view('clients/inscription');
-                $this->load->view('templates/footer');
+                
 
             }
             else

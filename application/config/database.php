@@ -69,6 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
+| '3e686dd066ae47a5b54890b18641a5a8de10fa91bda0b85fe7dbec588a84b8c3'
 */
 $active_group = 'default';
 $query_builder = TRUE;
@@ -77,7 +78,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'ec2-54-228-209-208.eu-west-1.compute.amazonaws.com',
 	'username' => 'gmkbeacvfgfkxy',
-	'password' => '3e686dd066ae47a5b54890b18641a5a8de10fa91bda0b85fe7dbec588a84b8c3',
+	'password' => getenv('PASSW'),
 	'database' => 'dd86ipvqq4gn35',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
