@@ -2,9 +2,13 @@
 <html>
 <head>
 	<title>Page d'acceuil</title>
+	<meta charset="utf-8">
+	<base href = "<?php echo base_url(); ?>">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 	
+<div class="container" align="center">
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">ENTREPRISE SIEE </h1>
@@ -20,7 +24,7 @@
   <a class="list-group-item list-group-item-action" href="#list-item-5">Automatisme et petites serrureries</a>
   <a class="list-group-item list-group-item-action" href="#list-item-6">Sécurité/Sinistre</a>
 </div>
-<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" id="homepage">
   <h4 id="list-item-1">Electricité générale</h4>
   <p>L'entreprise propose des services d'électricité sur courant faible et courant fort.
   <ul>
@@ -65,7 +69,7 @@
   	<li>...</li>
   </ul></p>
 </div>
-	
+</div>
 </body>
 </html>
 
