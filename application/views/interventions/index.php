@@ -52,8 +52,13 @@
 				      <th scope="col">Objet</th>
 				      <th scope="col">Durée (heure)</th>
 				      <th scope="col">Description</th>
+				      <?php
+				      if($admin)
+				      {
+				      	?>
 				      <th scope="col">Modifier</th>
 				      <th scope="col">Supprimer</th>
+				      <?php } ?>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -69,8 +74,13 @@
 				      <td><?php echo $interventions_item['appellationobjet']?></td>
 				      <td><?php echo $interventions_item['dureeintervention'] ?></td>
 				      <td><a href="<?php echo site_url('interventions/'.$interventions_item['idintervention']); ?>">Voir</a></td>
+				      <?php
+				      if($admin)
+				      {
+				      	?>
 				      <td><a href="<?php echo site_url('interventions/modif_interventions/'.$interventions_item['idintervention']); ?>">Modifier</a></td>
 				      <td><a href="<?php echo site_url('interventions/verif_delete/'.$interventions_item['idintervention']); ?>">Supprimer</a></td>
+				      <?php } ?>
 				</tr>
 
 				<?php endforeach; ?> 
@@ -90,8 +100,13 @@
 				      <th scope="col">Objet</th>
 				      <th scope="col">Durée (heure)</th>
 				      <th scope="col">Description</th>
+				      <?php
+				      if($admin)
+				      {
+				      	?>
 				      <th scope="col">Modifier</th>
 				      <th scope="col">Supprimer</th>
+				      <?php } ?>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -107,8 +122,13 @@
 				      <td><?php echo $syndics_item['appellationobjet']?></td>
 				      <td><?php echo $syndics_item['dureeintervention'] ?></td>
 				      <td><a href="<?php echo site_url('interventions/'.$syndics_item['idintervention']); ?>">Voir</a></td>
+				      <?php
+				      if($admin)
+				      {
+				      	?>
 				      <td><a href="<?php echo site_url('interventions/modif_interventions/'.$syndics_item['idintervention']); ?>">Modifier</a></td>
 				      <td><a href="<?php echo site_url('interventions/verif_delete/'.$syndics_item['idintervention']); ?>">Supprimer</a></td>
+				      <?php } ?>
 				</tr>
 					
 				  				
@@ -131,8 +151,13 @@
 				      <th scope="col">Objet</th>
 				      <th scope="col">Durée (heure)</th>
 				      <th scope="col">Description</th>
+				      <?php
+				      if($admin)
+				      {
+				      	?>
 				      <th scope="col">Modifier</th>
 				      <th scope="col">Supprimer</th>
+				      <?php } ?>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -148,8 +173,13 @@
 				      <td><?php echo $particuliers_item['appellationobjet']?></td>
 				      <td><?php echo $particuliers_item['dureeintervention'] ?></td>
 				      <td><a href="<?php echo site_url('interventions/'.$particuliers_item['idintervention']); ?>">Voir</a></td>
+				      <?php
+				      if($admin)
+				      {
+				      	?>
 				      <td><a href="<?php echo site_url('interventions/modif_interventions/'.$particuliers_item['idintervention']); ?>">Modifier</a></td>
 				      <td><a href="<?php echo site_url('interventions/verif_delete/'.$particuliers_item['idintervention']); ?>">Supprimer</a></td>
+				      <?php } ?>
 				</tr>
 					
 				  				

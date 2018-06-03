@@ -20,7 +20,7 @@
 					<?php 
 					 	echo form_open('interventions/create');
 
-					 	echo form_label('Idservice : ', 'idservice');
+					 	echo form_label('Service : ', 'idservice');
 						$idservice= array(
 					 
 							'name'=>'idservice',
@@ -47,7 +47,7 @@
 				</li>
 				<li class="list-group-item">
 					<?php
-					echo form_label('Idobjet : ', 'idobjet');
+					echo form_label('0bjet : ', 'idobjet');
 						$idobjet= array(
 					 
 							'name'=>'idobjet',
