@@ -13,7 +13,8 @@
 				<li class="list-group-item">
 					<div class="form-group">
 						<h2>Modification</h2>
-						<?php echo validation_errors(); ?>
+						<p class="erreur">
+						<?php echo validation_errors(); ?></p>
 					</div>
 				</li>
 				<li class="list-group-item">

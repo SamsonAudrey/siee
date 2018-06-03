@@ -15,8 +15,8 @@
 				<li class="list-group-item">
 					<div class="form-group">
 						<h3>Modification de votre profil</h3><br>
-
-						<?php echo validation_errors(); ?>
+						<p class="erreur">
+						<?php echo validation_errors(); ?></p>
 					</div>
 				</li>
 				<li class="list-group-item">

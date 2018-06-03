@@ -10,8 +10,9 @@
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">
 					<h2>Rdv</h2>
+					<p class="erreur">
 					<?php echo form_open('rdv/validation/'.$rdv_item['idrdv']);
-					echo validation_errors(); ?>
+					echo validation_errors(); ?></p>
 				</li>
 				<li class="list-group-item">
 					<?php

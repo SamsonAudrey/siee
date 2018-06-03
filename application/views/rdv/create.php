@@ -25,8 +25,8 @@
   			<ul class="list-group list-group-flush">
 				<li class="list-group-item">
 				<h2><?php echo $title; ?></h2>
-
-					<?php echo validation_errors(); ?>
+				<p class="erreur">
+					<?php echo validation_errors(); ?></p>
 				</li>
 		
 
