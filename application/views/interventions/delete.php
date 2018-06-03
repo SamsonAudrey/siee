@@ -48,6 +48,15 @@
 
 					echo form_submit('non','NON');
 					echo form_close();?>
+					<?php
+					}
+					else
+					{
+						?>
+						<h2>Cette intervention ne peut pas être supprimée</h2>
+						<p>Elle fait partie d'un rdv futur. Effectué dabord ce rdv pour pouvoir supprimer cette intervention.</p>
+						<?php
+					}?>
 			</ul>
 		</div>
 	</div>

@@ -111,4 +111,18 @@
             $this->db->update('objets', $data);
         }
 
+        public function can_be_delete($idobjet)
+        {
+            if($idobjet === FALSE)
+            {
+                show_404();
+            }
+            $this->load->helper('url');
+            $this->db->from('interventions');
+            $this->db->join('objets', 'objets.idobjet = interventions.idobjet');
+            $this->db->where('interventions.idobjet', $idobjet);
+            $query = $this->db->count_all_results();
+
+        }
+
  } 

@@ -83,6 +83,7 @@ class Services extends CI_Controller {
                 $data['title'] = $data['services_item']['appellationservice'];
                 $data['connecte']=$this->verif_cookie();
                 $data['admin']=$this->is_admin();
+                $data['delete']=$this->db->can_be_delete($idservice);
 
 
                 $this->load->view('templates/header', $data);

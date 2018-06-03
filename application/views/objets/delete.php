@@ -21,6 +21,9 @@
 				</li>
 				
 				<li class="list-group-item">
+					<?php if($delete)
+					{
+						?>
 					<h2> Etes-vous sûr ? </h2>
 					<?php echo form_open('objets/delete/'.$objets_item['idobjet']);
 					echo form_submit('oui','OUI');
@@ -29,6 +32,15 @@
 					echo form_open('objets');
 					echo form_submit('non','NON');
 					echo form_close();?>
+					<?php
+					}
+					else
+					{
+						?>
+						<h2>Cet objet ne peut pas être supprimé</h2>
+						<p>Il fait partie d'une intervention. Supprimez dabord l'intervention pour pouvoir supprimer cet objet.</p>
+						<?php
+					}?>
 				</li>
 			</ul>
 		</div>

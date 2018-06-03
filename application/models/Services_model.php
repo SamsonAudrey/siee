@@ -51,5 +51,27 @@ class Services_model extends CI_Model {
         {
             $this->db->delete('services', array('idservice' => $idservice));
         }
+
+        public function can_be_delete($idservice)
+        {
+            if($idservice === FALSE)
+            {
+                show_404();
+            }
+            $this->load->helper('url');
+
+            $this->db->from('interventions');
+            $this->db->join('services', 'services.idservice = interventions.idservice');
+            $this->db->where('interventions.idservice', $idservice);
+            $query = $this->db->count_all_results();
+            if($query >0)
+            {
+                return FALSE;
+            }
+            else
+            {
+                return TRUE;
+            }
+        }
         
 }

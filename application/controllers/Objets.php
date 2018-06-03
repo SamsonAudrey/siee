@@ -81,11 +81,11 @@ class Objets extends CI_Controller {
 
                 if (empty($data['objets_item']))
                 {
-                    print("ok0");
                         show_404();
                 }
 
                 $data['title'] = $data['objets_item']['appellationobjet'];
+                $data['delete'] = $this->objets_model->can_be_delete($idobjet);
 
 
                 $this->load->view('templates/header', $data);

@@ -33,21 +33,18 @@ class Interventions extends CI_Controller {
             $connecte=$this->verif_cookie();
             $data['connecte'] = $connecte;
             $data['client']=$this->clients_model->get_clients($connecte);
-            if($connecte < 0 || !($data['admin']))
+            
+            $data['interventions_item'] = $this->interventions_model->get_interventions($idintervention);
+
+            if (empty($data['interventions_item']))
             {
                         show_404();
             }
-                $data['interventions_item'] = $this->interventions_model->get_interventions($idintervention);
 
-                if (empty($data['interventions_item']))
-                {
-                        show_404();
-                }
-
-                $data['title'] = $data['interventions_item']['idintervention'];
+            $data['title'] = $data['interventions_item']['idintervention'];
                 
-                $this->load->view('templates/header', $data);
-                $this->load->view('interventions/view', $data);
+            $this->load->view('templates/header', $data);
+            $this->load->view('interventions/view', $data);
                 
         }
 
@@ -118,8 +115,7 @@ class Interventions extends CI_Controller {
                 }
 
                 $data['title'] = $data['interventions_item']['idintervention'];
-                $data['connecte']=$this->verif_cookie();
-                $data['admin']=$this->is_admin();
+                $data['delete'] = $this->db->can_be_delete($idintervention);
 
 
                 $this->load->view('templates/header', $data);

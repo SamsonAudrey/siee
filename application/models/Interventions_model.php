@@ -105,5 +105,27 @@ class Interventions_model extends CI_Model {
             $this->db->update('interventions', $data);
         }
 
+        public function can_be_delete($idintervention)
+        {
+            if($idintervention === FALSE)
+            {
+                show_404();
+            }
+            $this->load->helper('url');
+
+            $this->db->from('rdv');
+            $this->db->join('interventions', 'rdv.idintervention = interventions.idintervention');
+            $this->db->where('interventions.idintervention', $idintervention);
+            $query = $this->db->count_all_results();
+            if($query >0)
+            {
+                return FALSE;
+            }
+            else
+            {
+                return TRUE;
+            }
+        }
+
 }
 ?>
