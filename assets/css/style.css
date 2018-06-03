@@ -54,7 +54,7 @@
 }
 /* Version mobile, le menu devient une icône qui déroule une liste avec le menu en vertical */
 .navbar-default .navbar-toggle {
- border-color: #DDD;
+ border-color: #FFFAFA;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
