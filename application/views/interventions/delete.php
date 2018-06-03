@@ -24,6 +24,9 @@
 					<p><?php echo $interventions_item['descriptionintervention'] ?></p>
 				</li>
 				<li class="list-group-item">
+					<?php if($delete)
+					{
+						?>
 					<h2> Etes-vous sûr ? </h2>
 					<?php echo form_open('interventions/delete/'.$interventions_item['idintervention']);
 					 $dataoui = array(
