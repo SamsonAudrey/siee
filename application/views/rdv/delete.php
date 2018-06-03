@@ -1,4 +1,3 @@
-<?php echo coucou ?>
 <!DOCTYPE html>
 <html>
 <head>

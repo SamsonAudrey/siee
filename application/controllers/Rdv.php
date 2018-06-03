@@ -122,11 +122,11 @@ class Rdv extends CI_Controller {
             $this->form_validation->set_rules('idintervention', 'intervention', 'required',array(
                 'required'      => 'Vous devez remplir l\' %s.'
         ));
-            $this->form_validation->set_rules('datedispo1', 'première disponibilité', 'required|validate_date(datedispo1)',array(
+            $this->form_validation->set_rules('datedispo1', 'première disponibilité', 'required|callback_validate_date',array(
                 'required'      => 'Vous devez choisir la %s.',
                 'validate_date'=> 'La %s n\'est pas valide '
         ));
-            $this->form_validation->set_rules('datedispo2', 'deuxième disponibilité', 'required|validate_date(datedispo2)',array(
+            $this->form_validation->set_rules('datedispo2', 'deuxième disponibilité', 'required|callback_validate_date',array(
                 'required'      => 'Vous devez choisir la %s.',
                 'validate_date'=> 'La %s n\'est pas valide '
         ));
@@ -162,9 +162,11 @@ class Rdv extends CI_Controller {
             if (checkdate($test_arr[1], $test_arr[0], $test_arr[0])) {
                 return TRUE;
             } else {
+                $this->form_validation->set_message('validate_date', 'La date que vous avez choisie n\'est pas valide');
                 return FALSE;
             }
             } else {
+                $this->form_validation->set_message('validate_date', 'La date que vous avez choisie n\'est pas valide');
                 return FALSE;
             }
         }
