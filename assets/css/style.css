@@ -94,3 +94,8 @@ p.erreur{
 #homepage{
 	color:#FFA500;
 }
+
+#listehome{
+	list-style-type: none;
+	color:#000080;
+}
