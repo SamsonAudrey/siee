@@ -16,18 +16,14 @@ class Interventions extends CI_Controller {
             $connecte=$this->verif_cookie();
             $data['connecte'] = $connecte;
             $data['client']=$this->clients_model->get_clients($connecte);
-            if($connecte < 0)
-            {
-                        
-                        show_404();
-            }
-                $data['interventions'] = $this->interventions_model->get_interventions();
-                $data['syndics'] = $this->interventions_model->get_syndics_affichage();
-                $data['particuliers'] = $this->interventions_model->get_particuliers_affichage();
-                $data['title'] = 'Les interventions présentes :';
+            
+            $data['interventions'] = $this->interventions_model->get_interventions();
+            $data['syndics'] = $this->interventions_model->get_syndics_affichage();
+            $data['particuliers'] = $this->interventions_model->get_particuliers_affichage();
+            $data['title'] = 'Les interventions présentes :';
                                 
-                $this->load->view('templates/header', $data);
-                $this->load->view('interventions/index', $data);
+            $this->load->view('templates/header', $data);
+            $this->load->view('interventions/index', $data);
                 
         }
 

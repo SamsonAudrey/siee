@@ -58,9 +58,6 @@ class Clients extends CI_Controller {
 
                 $data['title'] = $data['clients_item']['nomclient']." ".$data['clients_item']['prenomclient'];
 
-                $data['connecte']=$this->verif_cookie();
-                $data['admin']=$this->is_admin();
-
                 $this->load->view('templates/header', $data);
                 $this->load->view('clients/view', $data);
                 $this->load->view('templates/footer');

@@ -217,8 +217,10 @@ class Rdv extends CI_Controller {
                 show_404();
             }
             
-            $this->form_validation->set_rules('daterdv', 'deuxième disponibilité', 'required',array(
+            $this->form_validation->set_rules('daterdv', 'date', 'required|callback_validate_date',array(
                 'required'      => 'Vous devez choisir la %s.',
+                'validate_date' =>  'La %s n\'est pas valide'
+
         ));
             if ($this->form_validation->run() === FALSE)
             {

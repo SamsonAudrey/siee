@@ -140,7 +140,7 @@
             $rdvup = array(
                 'idintervention' => $rdv['actual']['idintervention'],
                 'idclient'  => $rdv['actual']['idclient'],
-                'datedemande' => $rdv['actual']['daterdv'],
+                'datedemande' => $rdv['actual']['datedemande'],
                 'datedispo1'  =>$rdv['actual']['datedispo1'],
                 'datedispo2'  =>$rdv['actual']['datedispo2'],
                 'daterdv' => $this->input->post('daterdv'),
