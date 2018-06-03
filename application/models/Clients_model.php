@@ -12,6 +12,19 @@
 
         public function get_clients($idclient = False)
 	   {
+        /*if ($idclient === FALSE)
+            {
+                $query = $this->db->get('clients');
+                return $query->result_array();
+            }
+
+        $this->db->select('idclient,nomclient,prenomclient,email,telephoneclient,rueadresse,numeroadresse,nomvile,types.nomtype');
+        $this->db->from('clients');
+        $this->db->join('types', 'types.idtype = clients.idtype');
+        $this->db->join('villes', 'villes.idville = clients.idville');
+        $this->db->where('clients.idclient',$idclient);
+        $query = $this->db->get();
+        return $query->result_array();*/
         if ($idclient === FALSE)
             {
                 $query = $this->db->get('clients');

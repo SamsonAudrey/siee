@@ -15,7 +15,6 @@ class Clients extends CI_Controller {
             $data['admin']=$this->is_admin();
             $connecte=$this->verif_cookie();
             $data['connecte'] = $connecte;
-            $data['client']=$this->clients_model->get_clients($connecte);
             if($connecte < 0 || !($data['admin']))
             {
                         
@@ -46,7 +45,7 @@ class Clients extends CI_Controller {
             $data['admin']=$this->is_admin();
             $connecte=$this->verif_cookie();
             $data['connecte'] = $connecte;
-            $data['clients_item']=$this->clients_model->get_clients_affichage();
+            $data['clients_item'] = $this->clients_model->get_clients($idclient);
             if (empty($data['clients_item']))
                 {
                         show_404();
@@ -56,11 +55,9 @@ class Clients extends CI_Controller {
                 show_404();
             }
 
-                $data['title'] = $data['clients_item']['nomclient']." ".$data['clients_item']['prenomclient'];
-
-                $this->load->view('templates/header', $data);
-                $this->load->view('clients/view', $data);
-                $this->load->view('templates/footer');
+            $this->load->view('templates/header', $data);
+            $this->load->view('clients/view', $data);
+            $this->load->view('templates/footer');
         }
 
         public function inscription()
@@ -234,7 +231,7 @@ class Clients extends CI_Controller {
                }
             
             $connecte=$this->verif_cookie();
-            if($connecte!== $data['clients_item']['idclient'])
+            if($connecte!== $data['clients_item']['idclient'] && !($data['admin']))
             {
                         show_404();
             }

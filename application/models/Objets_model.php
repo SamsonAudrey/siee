@@ -118,11 +118,19 @@
                 show_404();
             }
             $this->load->helper('url');
+
             $this->db->from('interventions');
             $this->db->join('objets', 'objets.idobjet = interventions.idobjet');
             $this->db->where('interventions.idobjet', $idobjet);
             $query = $this->db->count_all_results();
-
+            if($query >0)
+            {
+                return FALSE;
+            }
+            else
+            {
+                return TRUE;
+            }
         }
 
  } 

@@ -74,7 +74,7 @@
 				      <td><?php echo "0".$clients_item['telephoneclient'] ?></td>
 				      <td><?php echo $clients_item['rueadresse']." ".$clients_item['numeroadresse'] ?></td>
 				      <td><?php echo $clients_item['nomvile'] ?></td>
-				      <td><a href="<?php echo site_url('clients/'.$clients_item['idclient']); ?>">Voir</a></td>
+				      <td><a href="<?php echo site_url('clients/profil/'.$clients_item['idclient']); ?>">Voir</a></td>
 				</tr>
 					
 				  				
@@ -117,7 +117,7 @@
 				      <td><?php echo "0".$syndics_item['telephoneclient'] ?></td>
 				      <td><?php echo $syndics_item['rueadresse']." ".$syndics_item['numeroadresse'] ?></td>
 				      <td><?php echo $syndics_item['nomvile'] ?></td>
-				      <td><a href="<?php echo site_url('clients/'.$syndics_item['idclient']); ?>">Voir</a></td>
+				      <td><a href="<?php echo site_url('clients/profil/'.$syndics_item['idclient']); ?>">Voir</a></td>
 				</tr>
 					
 				  				
@@ -160,7 +160,7 @@
 				      <td><?php echo "0".$particuliers_item['telephoneclient'] ?></td>
 				      <td><?php echo $particuliers_item['rueadresse']." ".$particuliers_item['numeroadresse'] ?></td>
 				      <td><?php echo $particuliers_item['nomvile'] ?></td>
-				      <td><a href="<?php echo site_url('clients/'.$particuliers_item['idclient']); ?>">Voir</a></td>
+				      <td><a href="<?php echo site_url('clients/profil/'.$particuliers_item['idclient']); ?>">Voir</a></td>
 				</tr>
 					
 				  				
