@@ -172,9 +172,10 @@ class Rdv extends CI_Controller {
 
         public function notMatch($date1, $date2)
         {
-            if($date2 != $this->input->post($dat1){
-            $this->form_validation->set_message('_notMatch', 'Les deux dates doivent être différentes !');
-            return false;
+            if($date2 != $this->input->post($dat1))
+            {
+                $this->form_validation->set_message('notMatch', 'Les deux dates doivent être différentes !');
+                return false;
             }
             return true;
         }
