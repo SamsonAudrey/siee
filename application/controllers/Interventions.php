@@ -115,7 +115,7 @@ class Interventions extends CI_Controller {
                 }
 
                 $data['title'] = $data['interventions_item']['idintervention'];
-                $data['delete'] = $this->db->can_be_delete($idintervention);
+                $data['delete'] = $this->interventions_model->can_be_delete($idintervention);
 
 
                 $this->load->view('templates/header', $data);
