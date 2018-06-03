@@ -183,9 +183,10 @@ class Rdv extends CI_Controller {
         public function validate_date($test_date)
         {
             //VALIDATION of dates
-            $test_arr  = explode('-', $test_date);
+            $test_arr  = explode('/', $test_date);
             if (count($test_arr) == 3) {
-            if (checkdate($test_arr[1], $test_arr[0], $test_arr[0])) {
+                //dd/mm/yyyy
+            if (checkdate($test_arr[1], $test_arr[0], $test_arr[2])) {
                 return TRUE;
             } else {
                 $this->form_validation->set_message('validate_date', 'La date que vous avez choisie n\'est pas valide');
